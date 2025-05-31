@@ -22,6 +22,6 @@ The Slow*x*minuteHttpFunctions use Thread.Sleep to sleep for x number of minutes
 - CrashHttpFunction: returns an HTTP 500.
 - FastHttpFunction: demonstrates a function that successfully and quickly executes.
 
-To test a function, append /api/*FunctionName* to the end of the Function App URL. For example, to test the FastHttpFunction, make a request to https://*ReplaceWithYourFunctionAppName*.*ManagedEnvironmentClusterName*.*Region*.azurecontainerapps.io
+To test a function, append /api/*FunctionName* to the end of the Function App URL. For example, to test the FastHttpFunction, make a request to https://*ReplaceWithYourFunctionAppName*.*ManagedEnvironmentClusterName*.*Region*.azurecontainerapps.io/api/FastHttpFunction
 
 A storage account is also deployed, for Functions management operations.
