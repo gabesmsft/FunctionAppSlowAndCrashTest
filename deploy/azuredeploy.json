@@ -29,14 +29,14 @@
       "type": "bool",
       "defaultValue": true,
       "metadata": {
-        "description": "If you set the workloadProfileEnabled parameter to true, a workload profile-enabled Container App Environment will be deployed, with a Consumption plan. If you set the workloadProfileEnabled parameter to false, a Consumption-only (non-workload profile-enabled) Container App Environment will be deployed."
+        "description": "Set to true if the Container App Environment is v2 (workload profile-enabled). By default, this is the type of environment that is deployed. Otherwise, set to false."
       }
     },
 	"workloadProfileName": {
       "type": "string",
       "defaultValue": "Consumption",
       "metadata": {
-        "description": "The Container App Environment workload profile to deploy to. Must either be the Consumption workload profile or an existing workload profile you created."
+        "description": "If the the Container App Environment is v2 (workload profile-enabled), this is the workload profile that the Function App will be deployed to. Otherwise, if this is a V1 environment, this parameter will be ignored."
       }
     }
   },
