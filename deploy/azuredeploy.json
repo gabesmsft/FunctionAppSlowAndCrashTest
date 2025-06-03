@@ -6,13 +6,6 @@
       "defaultValue": "canadacentral",
       "type": "String"
     },
-    "workspaceName": {
-      "type": "string",
-      "defaultValue": "[concat('LAWorkspace-', uniqueString(resourceGroup().id))]",
-      "metadata": {
-        "description": "The name of the Log Analytics Workspace."
-      }
-    },
     "environmentName": {
       "type": "string",
       "defaultValue": "[concat('ContainerAppEnv-', uniqueString(resourceGroup().id))]"
@@ -38,7 +31,14 @@
       "metadata": {
         "description": "If you set the workloadProfileEnabled parameter to true, a workload profile-enabled Container App Environment will be deployed, with a Consumption plan. If you set the workloadProfileEnabled parameter to false, a Consumption-only (non-workload profile-enabled) Container App Environment will be deployed."
       }
-    }
+    },
+	"workloadProfileName": {
+      "type": "string",
+      "defaultValue": "Consumption",
+      "metadata": {
+        "description": "The Container App Environment workload profile to deploy to. Must either be the Consumption workload profile or an existing workload profile you created."
+      }
+    },
   },
   "resources": [
     {
@@ -65,7 +65,7 @@
       ],
       "properties": {
         "managedEnvironmentId": "[resourceId('Microsoft.App/managedEnvironments/', parameters('environmentName'))]",
-        "workloadProfileName": "[if(parameters('workloadProfileEnabled'), 'Consumption', json('null'))]",		
+        "workloadProfileName": "[if(parameters('workloadProfileEnabled'), parameters('workloadProfileName'), json('null'))]",		
         "configuration": {
             "secrets": [
                 {
