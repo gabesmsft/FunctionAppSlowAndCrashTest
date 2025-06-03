@@ -38,7 +38,7 @@
       "metadata": {
         "description": "The Container App Environment workload profile to deploy to. Must either be the Consumption workload profile or an existing workload profile you created."
       }
-    },
+    }
   },
   "resources": [
     {
