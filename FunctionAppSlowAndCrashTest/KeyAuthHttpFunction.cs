@@ -1,27 +1,27 @@
 using System.Net;
+using Azure;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
 namespace FunctionAppSlownessTest
 {
-    public class Slow5minuteHttpFunction
+    public class KeyAuthHttpFunction
     {
         private readonly ILogger _logger;
 
-        public Slow5minuteHttpFunction(ILoggerFactory loggerFactory)
+        public KeyAuthHttpFunction(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<Slow5minuteHttpFunction>();
+            _logger = loggerFactory.CreateLogger<FastHttpFunction>();
         }
 
-        [Function("Slow5minuteHttpFunction")]
-        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
+        [Function("KeyAuthHttpFunction")]
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
         {
-            _logger.LogInformation("Slow5minuteHttpFunction processed a request.");
-
-            Thread.Sleep(300000);
+            _logger.LogInformation("KeyAuthHttpFunction processed a request.");
 
             var response = req.CreateResponse(HttpStatusCode.OK);
+
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
             await response.WriteStringAsync("Welcome to Azure Functions!");
